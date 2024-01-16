@@ -27,3 +27,35 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('Invalid password length. Please enter a length between 8 and 128 characters.');
     }
   });
+  function generatePassword(length, includeLowercase, includeUppercase, includeNumeric, includeSpecialChars) {
+    var charset = '';
+    var lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    var uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var numericChars = '0123456789';
+    var specialChars = '$@%&*';
+
+    if (includeLowercase) {
+      charset += lowercaseChars;
+    }
+
+    if (includeUppercase) {
+      charset += uppercaseChars;
+    }
+
+    if (includeNumeric) {
+      charset += numericChars;
+    }
+
+    if (includeSpecialChars) {
+      charset += specialChars;
+    }
+
+    var password = '';
+    for (var i = 0; i < length; i++) {
+      var randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset.charAt(randomIndex);
+    }
+
+    return password;
+  }
+});
